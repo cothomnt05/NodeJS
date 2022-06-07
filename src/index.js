@@ -6,9 +6,13 @@ const express = require("express");
 // const morgan = require("morgan");
 const handlebars = require("express-handlebars");
 const app = express();
-const port = 8000;
+const port = 3000;
 
 const route = require("./routes/index");
+const db = require("./config/db/index");
+
+//Connect to DB
+db.connect();
 
 //dẫn trực tiếp tới các file tĩnh như hình ảnh CSS file hoặc JS file cú pháp express.static
 app.use(express.static(path.join(__dirname, "public")));
@@ -32,11 +36,11 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "resources/views"));
+app.set("views", path.join(__dirname, "resources", "views"));
 
 //routes init
 route(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
