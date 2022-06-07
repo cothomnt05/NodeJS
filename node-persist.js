@@ -79,5 +79,3 @@ function removeAll() {
   storage.setItem("students", []);
   console.log("data is removed");
 }
-removeAll();
-showStudents();
